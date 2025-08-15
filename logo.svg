@@ -1,0 +1,26 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Burger Icon -->
+  <g transform="translate(10, 15)">
+    <!-- Top bun -->
+    <path d="M5 10 Q5 5 10 5 L20 5 Q25 5 25 10 Q25 15 20 15 L10 15 Q5 15 5 10 Z" fill="#F4B400"/>
+    <!-- Lettuce -->
+    <rect x="6" y="14" width="18" height="2" fill="#4CAF50" rx="1"/>
+    <!-- Patty -->
+    <rect x="7" y="16" width="16" height="4" fill="#8D4E2A" rx="2"/>
+    <!-- Cheese -->
+    <rect x="8" y="20" width="14" height="2" fill="#FFA726" rx="1"/>
+    <!-- Bottom bun -->
+    <rect x="6" y="22" width="18" height="6" fill="#D4A574" rx="3"/>
+    <!-- Sesame seeds -->
+    <circle cx="12" cy="8" r="1" fill="#FFF"/>
+    <circle cx="18" cy="9" r="1" fill="#FFF"/>
+    <circle cx="15" cy="7" r="1" fill="#FFF"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="45" y="25" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2C2C2C">Bite</text>
+  <text x="45" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E53935">Right</text>
+  
+  <!-- Accent dot -->
+  <circle cx="180" cy="35" r="3" fill="#F4B400"/>
+</svg>
