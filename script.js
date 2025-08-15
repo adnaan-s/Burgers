@@ -571,8 +571,11 @@ window.addEventListener('scroll', debounce(function() {
 // Preload critical images
 function preloadImages() {
     const criticalImages = [
-        'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+        'mini_burger_1.jpg',
+        'mini_burger_2.jpg',
+        'mini_burger_3.jpg',
+        'mini_burger_4.jpg',
+        'mini_burger_5.jpg'
     ];
     
     criticalImages.forEach(src => {
