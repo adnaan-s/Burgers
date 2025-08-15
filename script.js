@@ -44,7 +44,7 @@ function initMobileNavigation() {
     });
 }
 
-// Scroll Animations
+// Enhanced Scroll Animations
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -56,25 +56,38 @@ function initScrollAnimations() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
                 
-                // Add staggered animation for menu items
+                // Add spectacular staggered animation for menu items
                 if (entry.target.classList.contains('menu-grid')) {
                     const menuItems = entry.target.querySelectorAll('.menu-item');
                     menuItems.forEach((item, index) => {
                         setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, index * 150);
+                            item.classList.add('animate');
+                            item.style.animationDelay = `${index * 0.15}s`;
+                            item.style.animation = 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                        }, index * 100);
                     });
                 }
                 
-                // Add staggered animation for features
+                // Enhanced features animation
                 if (entry.target.classList.contains('about-features')) {
                     const features = entry.target.querySelectorAll('.feature');
                     features.forEach((feature, index) => {
                         setTimeout(() => {
                             feature.style.opacity = '1';
-                            feature.style.transform = 'translateX(0)';
-                        }, index * 200);
+                            feature.style.transform = 'translateX(0) scale(1)';
+                            feature.style.animation = 'bounceIn 0.6s ease-out';
+                        }, index * 150);
+                    });
+                }
+
+                // Gallery items animation
+                if (entry.target.classList.contains('gallery-carousel')) {
+                    const galleryItems = entry.target.querySelectorAll('.gallery-item');
+                    galleryItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1) rotateY(0deg)';
+                        }, index * 80);
                     });
                 }
             }
@@ -82,27 +95,47 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Observe elements for scroll animations
-    const animateElements = document.querySelectorAll('.about, .menu, .gallery, .contact, .menu-grid, .about-features');
+    const animateElements = document.querySelectorAll('.about, .menu, .gallery, .contact, .menu-grid, .about-features, .gallery-carousel');
     animateElements.forEach(el => {
         el.classList.add('scroll-reveal');
         observer.observe(el);
     });
 
-    // Initial setup for menu items
+    // Initial setup for menu items with enhanced styling
     const menuItems = document.querySelectorAll('.menu-item');
-    menuItems.forEach(item => {
+    menuItems.forEach((item, index) => {
         item.style.opacity = '0';
-        item.style.transform = 'translateY(30px)';
-        item.style.transition = 'all 0.6s ease';
+        item.style.transform = 'translateY(50px) scale(0.9)';
+        item.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
     });
 
-    // Initial setup for features
+    // Enhanced setup for features
     const features = document.querySelectorAll('.feature');
-    features.forEach(feature => {
+    features.forEach((feature, index) => {
         feature.style.opacity = '0';
-        feature.style.transform = 'translateX(-20px)';
-        feature.style.transition = 'all 0.5s ease';
+        feature.style.transform = 'translateX(-30px) scale(0.8)';
+        feature.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
     });
+
+    // Gallery items initial setup
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0.8) rotateY(15deg)';
+        item.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    });
+
+    // Add bounceIn animation keyframes
+    const bounceInStyle = document.createElement('style');
+    bounceInStyle.textContent = `
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: translateX(-30px) scale(0.3); }
+            50% { opacity: 1; transform: translateX(10px) scale(1.05); }
+            70% { transform: translateX(-5px) scale(0.98); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+    `;
+    document.head.appendChild(bounceInStyle);
 }
 
 // Smooth Scrolling for anchor links
@@ -254,64 +287,170 @@ function createImageModal(src, alt) {
     });
 }
 
-// Hover Effects Enhancement
+// Enhanced Hover Effects with Particle Magic
 function initHoverEffects() {
-    // Menu item hover effects
+    // Spectacular menu item hover effects
     const menuItems = document.querySelectorAll('.menu-item');
     menuItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
+            this.style.transform = 'translateY(-15px) scale(1.02) rotateX(5deg)';
+            createParticleEffect(this);
+            
+            // Add glow effect
+            this.style.boxShadow = '0 25px 80px rgba(244, 180, 0, 0.3), 0 0 30px rgba(229, 57, 53, 0.2)';
         });
         
         item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
+            this.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
+            this.style.boxShadow = 'var(--shadow)';
         });
     });
+
+    // Create particle effect for menu items
+    function createParticleEffect(element) {
+        for (let i = 0; i < 6; i++) {
+            setTimeout(() => {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    background: ${i % 2 === 0 ? '#F4B400' : '#E53935'};
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                `;
+                
+                const rect = element.getBoundingClientRect();
+                particle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                particle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                
+                document.body.appendChild(particle);
+                
+                // Animate particle
+                particle.animate([
+                    { transform: 'translateY(0) scale(1)', opacity: 1 },
+                    { transform: 'translateY(-100px) scale(0)', opacity: 0 }
+                ], {
+                    duration: 1000,
+                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                }).onfinish = () => particle.remove();
+            }, i * 100);
+        }
+    }
     
-    // CTA button ripple effect
+    // Enhanced CTA button effects with multiple ripples
     const ctaButtons = document.querySelectorAll('.cta-btn');
     ctaButtons.forEach(button => {
         button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.6);
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-            `;
-            
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
+            // Create multiple ripples for more impact
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height) * (1 + i * 0.5);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, ${0.4 - i * 0.1});
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        transform: scale(0);
+                        animation: ripple ${0.8 + i * 0.2}s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        if (ripple.parentNode) ripple.remove();
+                    }, 1000 + i * 200);
+                }, i * 150);
+            }
+        });
+
+        // Add hover glow effect to buttons
+        button.addEventListener('mouseenter', function() {
+            this.style.filter = 'brightness(1.1) drop-shadow(0 0 20px rgba(244, 180, 0, 0.5))';
+        });
+
+        button.addEventListener('mouseleave', function() {
+            this.style.filter = 'none';
+        });
+    });
+
+    // Logo hover effect with rotation
+    const logoImg = document.querySelector('.logo-img');
+    if (logoImg) {
+        logoImg.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1) rotate(5deg)';
+            this.style.filter = 'drop-shadow(0 8px 16px rgba(244, 180, 0, 0.3))';
+        });
+
+        logoImg.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+            this.style.filter = 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))';
+        });
+    }
+
+    // Enhanced feature hover effects
+    const features = document.querySelectorAll('.feature');
+    features.forEach((feature, index) => {
+        feature.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.05) rotateY(5deg)';
+            // Add random color pulse
+            const colors = ['#F4B400', '#E53935', '#4CAF50', '#2196F3'];
+            this.style.background = `linear-gradient(135deg, ${colors[index % colors.length]}, ${colors[(index + 1) % colors.length]})`;
+        });
+
+        feature.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1) rotateY(0deg)';
+            this.style.background = 'var(--light-gray)';
         });
     });
     
-    // Add ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
+    // Add enhanced ripple and glow animations
+    const enhancedStyle = document.createElement('style');
+    enhancedStyle.textContent = `
         @keyframes ripple {
             to {
                 transform: scale(4);
                 opacity: 0;
             }
         }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2) drop-shadow(0 0 20px rgba(244, 180, 0, 0.6)); }
+        }
+
+        .menu-item:hover .menu-badge {
+            animation: glow 1.5s ease-in-out infinite;
+        }
+
+        .floating-particle {
+            animation: floatUp 2s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% { 
+                transform: translateY(0) scale(1) rotate(0deg); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translateY(-150px) scale(0) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
     `;
-    document.head.appendChild(style);
+    document.head.appendChild(enhancedStyle);
 }
 
 // Lazy Loading for Images
