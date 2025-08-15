@@ -782,12 +782,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .feature-card {
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem 1rem;
     background: var(--white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     transition: var(--transition);
     cursor: pointer;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .feature-card:hover {
@@ -798,9 +803,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .feature-card i {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--primary-red);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     transition: var(--transition);
 }
 
@@ -810,10 +815,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .feature-card h4 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: var(--charcoal);
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     transition: var(--transition);
+    font-weight: 600;
 }
 
 .feature-card:hover h4 {
