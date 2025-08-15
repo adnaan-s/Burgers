@@ -20,7 +20,11 @@ A modern, mobile-friendly landing page for **Bite Right**, a mini burger startup
 - **Enhanced Gallery**: Click-to-expand modal with smooth 3D rotations and transitions
 - **Particle Effects**: Floating particles on menu item hovers for magical user experience
 - **Dynamic Badges**: Animated category badges with glow effects and color gradients
-
+=======
+- **Smooth Animations**: Scroll-triggered reveals, hover effects, and transitions
+- **Interactive Elements**: Ripple effects on buttons, image zoom on hover
+- **Sticky Mobile CTA**: Prominent WhatsApp order button on mobile devices
+- **Gallery Modal**: Click-to-expand image gallery with smooth transitions
 ### Performance Optimizations
 - **Lazy Loading**: Images load as they come into viewport
 - **Image Preloading**: Critical images loaded in advance

@@ -45,6 +45,7 @@ function initMobileNavigation() {
 }
 
 // Enhanced Scroll Animations
+// Scroll Animations
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -57,6 +58,7 @@ function initScrollAnimations() {
                 entry.target.classList.add('revealed');
                 
                 // Add spectacular staggered animation for menu items
+                // Add staggered animation for menu items
                 if (entry.target.classList.contains('menu-grid')) {
                     const menuItems = entry.target.querySelectorAll('.menu-item');
                     menuItems.forEach((item, index) => {
@@ -69,6 +71,13 @@ function initScrollAnimations() {
                 }
                 
                 // Enhanced features animation
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    });
+                }
+                
+                // Add staggered animation for features
                 if (entry.target.classList.contains('about-features')) {
                     const features = entry.target.querySelectorAll('.feature');
                     features.forEach((feature, index) => {
@@ -88,6 +97,8 @@ function initScrollAnimations() {
                             item.style.opacity = '1';
                             item.style.transform = 'scale(1) rotateY(0deg)';
                         }, index * 80);
+                            feature.style.transform = 'translateX(0)';
+                        }, index * 200);
                     });
                 }
             }
@@ -96,6 +107,8 @@ function initScrollAnimations() {
 
     // Observe elements for scroll animations
     const animateElements = document.querySelectorAll('.about, .menu, .gallery, .contact, .menu-grid, .about-features, .gallery-carousel');
+=======
+    const animateElements = document.querySelectorAll('.about, .menu, .gallery, .contact, .menu-grid, .about-features');
     animateElements.forEach(el => {
         el.classList.add('scroll-reveal');
         observer.observe(el);
@@ -136,6 +149,21 @@ function initScrollAnimations() {
         }
     `;
     document.head.appendChild(bounceInStyle);
+    // Initial setup for menu items
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 0.6s ease';
+    });
+
+    // Initial setup for features
+    const features = document.querySelectorAll('.feature');
+    features.forEach(feature => {
+        feature.style.opacity = '0';
+        feature.style.transform = 'translateX(-20px)';
+        feature.style.transition = 'all 0.5s ease';
+    });
 }
 
 // Smooth Scrolling for anchor links
@@ -286,7 +314,6 @@ function createImageModal(src, alt) {
         if (e.key === 'Escape') closeModal();
     });
 }
-
 // Enhanced Hover Effects with Particle Magic
 function initHoverEffects() {
     // Spectacular menu item hover effects
@@ -419,6 +446,56 @@ function initHoverEffects() {
     // Add enhanced ripple and glow animations
     const enhancedStyle = document.createElement('style');
     enhancedStyle.textContent = `
+// Hover Effects Enhancement
+function initHoverEffects() {
+    // Menu item hover effects
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // CTA button ripple effect
+    const ctaButtons = document.querySelectorAll('.cta-btn');
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+    
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
         @keyframes ripple {
             to {
                 transform: scale(4);
@@ -451,6 +528,8 @@ function initHoverEffects() {
         }
     `;
     document.head.appendChild(enhancedStyle);
+    `;
+    document.head.appendChild(style);
 }
 
 // Lazy Loading for Images
