@@ -630,11 +630,85 @@ h1, h2, h3, h4, h5, h6 {
     animation: pulse 2s ease-in-out infinite;
 }
 
-.menu-badge.spicy { background: linear-gradient(135deg, #FF5722, #FF8A65); }
 .menu-badge.cheese { background: linear-gradient(135deg, #FF9800, #FFB74D); }
-.menu-badge.veggie { background: linear-gradient(135deg, #4CAF50, #81C784); }
-.menu-badge.bbq { background: linear-gradient(135deg, #8D4E2A, #A1887F); }
-.menu-badge.fish { background: linear-gradient(135deg, #2196F3, #64B5F6); }
+
+.sauce-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--light-gray);
+    border-radius: var(--border-radius-small);
+    font-size: 0.9rem;
+    color: var(--medium-gray);
+    font-weight: 500;
+}
+
+.sauce-info i {
+    color: var(--primary-yellow);
+    font-size: 1rem;
+}
+
+.menu-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-intense);
+    background: var(--gradient-secondary);
+    color: var(--white);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.feature-card:hover i {
+    color: var(--white);
+    transform: scale(1.2);
+}
+
+.feature-card h4 {
+    font-size: 1.3rem;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.feature-card:hover h4 {
+    color: var(--white);
+}
+
+.feature-card p {
+    color: var(--medium-gray);
+    line-height: 1.6;
+    transition: var(--transition);
+}
+
+.feature-card:hover p {
+    color: var(--white);
+    opacity: 0.9;
+}
 
 .menu-cta {
     text-align: center;
